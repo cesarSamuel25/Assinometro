@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="blue">#3D36FF</color>
+    <color name="blue_button">#5C58D2</color>
+    <color name="blue_up">#030068</color>
+    <color name="pink">#FF0040</color>
+    <color name="pink_up">#6E001C</color>
+    <color name="cyan">#36C9FF</color>
+    <color name="cyan_up">#00739D</color>
+    <color name="orange">#FF8000</color>
+    <color name="orange_up">#B45A00</color>
+
+</resources>
