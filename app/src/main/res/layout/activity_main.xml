@@ -343,13 +343,13 @@
         app:iconGravity="textStart"
         app:iconPadding="0dp"
         app:iconTint="@color/white"
-        app:layout_constraintBottom_toTopOf="@id/view_bottomBar"
+        app:layout_constraintBottom_toTopOf="@id/view_bottomBar_add"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_margin="32dp"/>
 
 
     <View
-        android:id="@+id/view_bottomBar"
+        android:id="@+id/view_bottomBar_add"
         android:layout_width="0dp"
         android:layout_height="56dp"
         android:background="@color/blue"
@@ -358,39 +358,34 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
-        android:id="@+id/ic_statistics"
+        android:id="@+id/ic_statistics_add"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="64dp"
         android:src="@drawable/ic_statistics"
-        app:layout_constraintBottom_toBottomOf="@id/view_bottomBar"
-        app:layout_constraintEnd_toStartOf="@id/ic_home"
-        app:layout_constraintStart_toStartOf="@id/view_bottomBar"
-        app:layout_constraintTop_toTopOf="@id/view_bottomBar"
-        android:contentDescription="@string/statistics"/>
+        app:layout_constraintBottom_toBottomOf="@id/view_bottomBar_add"
+        app:layout_constraintEnd_toStartOf="@id/ic_home_add"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        app:layout_constraintStart_toStartOf="@id/view_bottomBar_add"
+        app:layout_constraintTop_toTopOf="@id/view_bottomBar_add" />
 
     <ImageView
-        android:id="@+id/ic_home"
+        android:id="@+id/ic_home_add"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_home"
-        app:layout_constraintBottom_toBottomOf="@id/view_bottomBar"
-        app:layout_constraintEnd_toStartOf="@id/ic_list"
-        app:layout_constraintStart_toEndOf="@id/ic_statistics"
-        app:layout_constraintTop_toTopOf="@id/view_bottomBar"
-        android:contentDescription="@string/home"/>
+        app:layout_constraintBottom_toBottomOf="@id/view_bottomBar_add"
+        app:layout_constraintEnd_toStartOf="@id/ic_list_add"
+        app:layout_constraintStart_toEndOf="@id/ic_statistics_add"
+        app:layout_constraintTop_toTopOf="@id/view_bottomBar_add" />
 
     <ImageView
-        android:id="@+id/ic_list"
+        android:id="@+id/ic_list_add"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="64dp"
         android:src="@drawable/ic_list"
-        app:layout_constraintBottom_toBottomOf="@id/view_bottomBar"
-        app:layout_constraintEnd_toEndOf="@id/view_bottomBar"
-        app:layout_constraintStart_toEndOf="@id/ic_home"
-        app:layout_constraintTop_toTopOf="@id/view_bottomBar"
-        android:contentDescription="@string/list"/>
-
+        app:layout_constraintBottom_toBottomOf="@id/view_bottomBar_add"
+        app:layout_constraintEnd_toEndOf="@id/view_bottomBar_add"
+        app:layout_constraintStart_toEndOf="@id/ic_home_add"
+        app:layout_constraintTop_toTopOf="@id/view_bottomBar_add" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

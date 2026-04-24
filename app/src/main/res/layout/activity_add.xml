@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
@@ -9,7 +10,7 @@
     tools:context=".AddActivity">
 
     <View
-        android:id="@+id/view_topBar"
+        android:id="@+id/view_topBar_add"
         android:layout_width="0dp"
         android:layout_height="56dp"
         android:background="@color/blue"
@@ -18,19 +19,118 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:id="@+id/textViewTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
         android:text="Adicionar Serviço"
         android:textColor="@color/white"
         android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="@id/view_topBar"
-        app:layout_constraintEnd_toEndOf="@id/view_topBar"
-        app:layout_constraintStart_toStartOf="@id/view_topBar"
-        app:layout_constraintTop_toTopOf="@id/view_topBar"/>
+        app:layout_constraintBottom_toBottomOf="@id/view_topBar_add"
+        app:layout_constraintStart_toStartOf="@id/view_topBar_add"
+        app:layout_constraintEnd_toEndOf="@id/view_topBar_add"
+        app:layout_constraintTop_toTopOf="@id/view_topBar_add" />
 
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/input_layout_nome"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginTop="48dp"
+        app:boxStrokeColor="@color/blue"
+        app:hintTextColor="@color/blue"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/view_topBar_add">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edit_nome_servico"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nome do serviço (ex: Spotify)"
+            android:textColorHint="@color/blue_up" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/input_layout_valor"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginTop="16dp"
+        app:boxStrokeColor="@color/blue"
+        app:hintTextColor="@color/blue"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/input_layout_nome">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edit_valor_servico"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Valor (R$)"
+            android:inputType="numberDecimal" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/input_layout_categoria"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginTop="16dp"
+        app:boxStrokeColor="@color/blue"
+        app:hintTextColor="@color/blue"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/input_layout_valor">
+
+        <AutoCompleteTextView
+            android:id="@+id/autoComplete_categoria"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Categoria"
+            android:inputType="none" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/input_layout_vencimento"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginTop="16dp"
+        app:boxStrokeColor="@color/blue"
+        app:hintTextColor="@color/blue"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/input_layout_categoria">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edit_vencimento"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Dia do Vencimento"
+            android:inputType="number" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_salvar_servico"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="48dp"
+        android:backgroundTint="@color/blue"
+        android:padding="12dp"
+        android:text="Salvar Serviço"
+        android:textAllCaps="false"
+        app:cornerRadius="24dp"
+        app:layout_constraintBottom_toTopOf="@id/view_bottomBar_add"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <View
-        android:id="@+id/view_bottomBar"
+        android:id="@+id/view_bottomBar_add"
         android:layout_width="0dp"
         android:layout_height="56dp"
         android:background="@color/blue"
@@ -38,40 +138,35 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-
     <ImageView
-        android:id="@+id/ic_statistics"
+        android:id="@+id/ic_statistics_add"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="64dp"
         android:src="@drawable/ic_statistics"
-        app:layout_constraintBottom_toBottomOf="@id/view_bottomBar"
-        app:layout_constraintEnd_toStartOf="@id/ic_home"
-        app:layout_constraintStart_toStartOf="@id/view_bottomBar"
-        app:layout_constraintTop_toTopOf="@id/view_bottomBar"
-        android:contentDescription="@string/statistics"/>
+        app:layout_constraintBottom_toBottomOf="@id/view_bottomBar_add"
+        app:layout_constraintEnd_toStartOf="@id/ic_home_add"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        app:layout_constraintStart_toStartOf="@id/view_bottomBar_add"
+        app:layout_constraintTop_toTopOf="@id/view_bottomBar_add" />
 
     <ImageView
-        android:id="@+id/ic_home"
+        android:id="@+id/ic_home_add"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_home"
-        app:layout_constraintBottom_toBottomOf="@id/view_bottomBar"
-        app:layout_constraintEnd_toStartOf="@id/ic_list"
-        app:layout_constraintStart_toEndOf="@id/ic_statistics"
-        app:layout_constraintTop_toTopOf="@id/view_bottomBar"
-        android:contentDescription="@string/home"/>
+        app:layout_constraintBottom_toBottomOf="@id/view_bottomBar_add"
+        app:layout_constraintEnd_toStartOf="@id/ic_list_add"
+        app:layout_constraintStart_toEndOf="@id/ic_statistics_add"
+        app:layout_constraintTop_toTopOf="@id/view_bottomBar_add" />
 
     <ImageView
-        android:id="@+id/ic_list"
+        android:id="@+id/ic_list_add"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="64dp"
         android:src="@drawable/ic_list"
-        app:layout_constraintBottom_toBottomOf="@id/view_bottomBar"
-        app:layout_constraintEnd_toEndOf="@id/view_bottomBar"
-        app:layout_constraintStart_toEndOf="@id/ic_home"
-        app:layout_constraintTop_toTopOf="@id/view_bottomBar"
-        android:contentDescription="@string/list"/>
+        app:layout_constraintBottom_toBottomOf="@id/view_bottomBar_add"
+        app:layout_constraintEnd_toEndOf="@id/view_bottomBar_add"
+        app:layout_constraintStart_toEndOf="@id/ic_home_add"
+        app:layout_constraintTop_toTopOf="@id/view_bottomBar_add" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
