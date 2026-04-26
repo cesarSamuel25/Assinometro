@@ -49,7 +49,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Nome do serviço (ex: Spotify)"
-            android:textColorHint="@color/blue_up" />
+            android:textColorHint="@color/blue_up"
+            android:inputType="textCapSentences|textAutoCorrect"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout

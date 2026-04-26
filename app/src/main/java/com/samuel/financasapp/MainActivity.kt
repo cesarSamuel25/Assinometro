@@ -7,6 +7,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.samuel.financasapp.databinding.ActivityMainBinding
+import java.text.NumberFormat
+import java.util.Locale
 
 class MainActivity : AppCompatActivity() {
 
@@ -29,6 +31,35 @@ class MainActivity : AppCompatActivity() {
         carregarNomeUsuario()
 
         setupListeners()
+
+        atualizarDashboard()
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        atualizarDashboard()
+    }
+
+    private fun atualizarDashboard() {
+        val db = Database(this)
+        val dados = db.obterResumoFinanceiro()
+
+        binding.apply {
+            val totalGeral = dados["TOTAL"] ?: 0.0
+            val valorFormatado = formatarMoeda(totalGeral)
+
+            textViewTotal.text = getString(R.string.total_formatado, valorFormatado)
+
+            valueStreaming.text = formatarMoeda(dados["Streaming"] ?: 0.0)
+            valueFit.text = formatarMoeda(dados["Saúde"] ?: 0.0)
+            valueApps.text = formatarMoeda(dados["Aplicativos"] ?: 0.0)
+            valueMore.text = formatarMoeda(dados["Outros"] ?: 0.0)
+        }
+    }
+
+    private fun formatarMoeda(valor: Double): String {
+        return NumberFormat.getCurrencyInstance(Locale("pt", "BR")).format(valor)
     }
 
     private fun setupListeners() {
@@ -36,7 +67,6 @@ class MainActivity : AppCompatActivity() {
             buttonAdd.setOnClickListener { irParaTelaAdicionar() }
         }
     }
-
 
     private fun carregarNomeUsuario() {
         val sharedPref = getSharedPreferences(Constantes.SharedPreferencesConst.PREFS_NAME, MODE_PRIVATE)

@@ -12,7 +12,7 @@
 
     <!-- Dashboard Values Variable -->
     <string name="hello">Olá!</string>
-    <string name="total_message">Total mensal R$: 600,00</string>
+    <string name="total_formatado">Total mensal %1$s</string>
     <string name="value_streaming">R$: 200,00</string>
     <string name="value_fit">R$: 200,00</string>
     <string name="value_apps">R$: 200,00</string>
