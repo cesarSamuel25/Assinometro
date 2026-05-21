@@ -1,29 +1,28 @@
-package com.samuel.financasapp
+package com.samuel.financasapp.Activity
 
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.samuel.financasapp.databinding.ActivityLoginBinding
+import com.samuel.financasapp.ViewModel.LoginViewModel
+import com.samuel.financasapp.R
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
+    private val viewModel: LoginViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val sharedPref = getSharedPreferences(Constantes.SharedPreferencesConst.PREFS_NAME, MODE_PRIVATE)
-        val nomeSalvo = sharedPref.getString(Constantes.SharedPreferencesConst.KEY_NOME_USUARIO, null)
-        if (nomeSalvo != null) {
-            irParaProximaTela()
-            return
-        }
+        // Pergunta ao ViewModel se o usuário já existe
+        viewModel.verificarUsuarioLogado()
 
         binding = ActivityLoginBinding.inflate(layoutInflater)
-
         enableEdgeToEdge()
         setContentView(binding.root)
 
@@ -34,32 +33,22 @@ class LoginActivity : AppCompatActivity() {
         }
 
         setupListeners()
+        setupObservers()
     }
 
     private fun setupListeners() {
-        binding.apply {
-            buttonSave.setOnClickListener { saveUserName() }
+        binding.buttonSave.setOnClickListener {
+            val nomeDigitado = binding.editTextName.text.toString()
+            viewModel.tentarSalvarUsuario(nomeDigitado)
         }
     }
 
-    private fun saveUserName(){
-        val name = binding.editTextName.text.toString()
-
-        if (name.isNotEmpty()) {
-            salvarNoSharedPreferences(name)
-            irParaProximaTela()
-        } else {
-            Toast.makeText(this, "Nome não pode estar vazio", Toast.LENGTH_SHORT).show()
-        }
-    }
-
-    private fun salvarNoSharedPreferences(nome: String) {
-
-        val sharedPref = getSharedPreferences(Constantes.SharedPreferencesConst.PREFS_NAME, MODE_PRIVATE)
-
-        with(sharedPref.edit()) {
-            putString(Constantes.SharedPreferencesConst.KEY_NOME_USUARIO, nome)
-            apply()
+    private fun setupObservers() {
+        viewModel.estadoLogin.observe(this) { estado ->
+            when (estado) {
+                is LoginViewModel.LoginState.Sucesso -> irParaProximaTela()
+                is LoginViewModel.LoginState.Erro -> Toast.makeText(this, estado.mensagem, Toast.LENGTH_SHORT).show()
+            }
         }
     }
 

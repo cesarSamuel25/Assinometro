@@ -1,8 +1,9 @@
-package com.samuel.financasapp
+package com.samuel.financasapp.Repository
 
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
+import com.samuel.financasapp.Util.Constantes
 
 class Database(context: Context) :
     SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION){

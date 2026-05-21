@@ -12,10 +12,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FinancasApp">
         <activity
-            android:name=".AddActivity"
+            android:name=".Activity.ProjecaoActivity"
             android:exported="false" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".Activity.ListagemActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.AddActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,8 +30,8 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity"
-            android:exported="false"></activity>
+            android:name=".Activity.MainActivity"
+            android:exported="false" />
     </application>
 
 </manifest>

@@ -1,4 +1,4 @@
-package com.samuel.financasapp
+package com.samuel.financasapp.Util
 
 class Constantes {
 
