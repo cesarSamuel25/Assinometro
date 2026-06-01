@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">FinancasApp</string>
+    <string name="app_name">Assinômetro</string>
     <string name="dash_message">Aqui está um resumo dos seus gastos mensais</string>
     <string name="streaming">Streaming</string>
     <string name="fitness">Fitness</string>
