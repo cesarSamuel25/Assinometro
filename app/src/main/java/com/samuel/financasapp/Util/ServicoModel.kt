@@ -6,5 +6,6 @@ data class ServicoModel(
     val valor: Double,
     val categoria: String,
     val vencimento: Int,
-    val ativo: Int
+    val ativo: Int,
+    val dataCancelamento: String? = null // Novo campo adicionado
 )

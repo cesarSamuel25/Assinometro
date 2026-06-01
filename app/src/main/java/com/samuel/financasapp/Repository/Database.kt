@@ -6,21 +6,21 @@ import android.database.sqlite.SQLiteOpenHelper
 import com.samuel.financasapp.Util.Constantes
 
 class Database(context: Context) :
-    SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION){
-
+    SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
 
     override fun onCreate(db: SQLiteDatabase) {
         db.execSQL(CREATE_TABLE_FINANCAS)
     }
 
     override fun onUpgrade(p0: SQLiteDatabase?, p1: Int, p2: Int) {
-        TODO("Not yet implemented")
+        // Implementações futuras de migração se necessárias
     }
 
-    companion object{
+    companion object {
         private const val DATABASE_NAME = "FinancasDB"
         private const val DATABASE_VERSION = 1
 
+        // Tabela atualizada com a coluna DataCancelamento
         private const val CREATE_TABLE_FINANCAS = """
             CREATE TABLE ${Constantes.DatabaseConstants.TABLE_NAME}(
             ${Constantes.DatabaseConstants.ID} INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -28,7 +28,8 @@ class Database(context: Context) :
             ${Constantes.DatabaseConstants.VALOR} REAL NOT NULL,
             ${Constantes.DatabaseConstants.CATEGORIA} TEXT NOT NULL,
             ${Constantes.DatabaseConstants.VENCIMENTO} INTEGER NOT NULL,
-            ${Constantes.DatabaseConstants.ATIVO} INTEGER NOT NULL
+            ${Constantes.DatabaseConstants.ATIVO} INTEGER NOT NULL,
+            ${Constantes.DatabaseConstants.DATA_CANCELAMENTO} TEXT
             );
         """
     }

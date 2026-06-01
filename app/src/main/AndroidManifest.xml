@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FinancasApp">
         <activity
+            android:name=".Activity.HistoricoActivity"
+            android:exported="false" />
+        <activity
             android:name=".Activity.ProjecaoActivity"
             android:exported="false" />
         <activity

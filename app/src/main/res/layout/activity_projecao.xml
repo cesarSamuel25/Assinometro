@@ -25,9 +25,9 @@
         android:text="Projeção"
         android:textColor="@color/white"
         android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@id/view_topBar_projecao"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/view_topBar_projecao" />
 
     <com.google.android.material.card.MaterialCardView
@@ -95,7 +95,7 @@
         android:textColor="@color/orange"
         android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@id/sliderMeses"
+        app:layout_constraintBottom_toTopOf="@id/seekBarMeses"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
@@ -107,8 +107,8 @@
         android:textColor="@color/blue"
         android:textSize="16sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@id/sliderMeses"
-        app:layout_constraintStart_toStartOf="@id/sliderMeses" />
+        app:layout_constraintBottom_toTopOf="@id/seekBarMeses"
+        app:layout_constraintStart_toStartOf="@id/seekBarMeses" />
 
     <TextView
         android:id="@+id/txtNum24"
@@ -119,29 +119,25 @@
         android:textColor="@color/blue"
         android:textSize="16sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@id/sliderMeses"
-        app:layout_constraintEnd_toEndOf="@id/sliderMeses" />
+        app:layout_constraintBottom_toTopOf="@id/seekBarMeses"
+        app:layout_constraintEnd_toEndOf="@id/seekBarMeses" />
 
-    <com.google.android.material.slider.Slider
-        android:id="@+id/sliderMeses"
+    <SeekBar
+        android:id="@+id/seekBarMeses"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="32dp"
+        android:layout_height="32dp"
+        android:layout_marginHorizontal="24dp"
         android:layout_marginTop="32dp"
-        android:stepSize="1.0"
-        android:value="12.0"
-        android:valueFrom="1.0"
-        android:valueTo="24.0"
-        app:labelBehavior="gone"
+        android:max="23"
+        android:progress="11"
+        android:splitTrack="false"
+        android:thumb="@drawable/custom_thumb"
+        android:thumbOffset="0dp"
+        android:progressTint="@color/blue"
+        android:progressBackgroundTint="@android:color/darker_gray"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/txtLegendaSlider"
-        app:thumbColor="@color/orange"
-        app:thumbRadius="10dp"
-        app:thumbElevation="2dp"
-        app:trackColorActive="@color/blue"
-        app:trackColorInactive="@android:color/darker_gray"
-        app:trackHeight="6dp" />
+        app:layout_constraintTop_toBottomOf="@id/txtLegendaSlider" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnProjecaoAdd"

@@ -13,7 +13,7 @@
         android:layout_width="0dp"
         android:layout_height="56dp"
         android:background="@color/blue"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:elevation="4dp" app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -24,6 +24,8 @@
         android:text="Meus Serviços"
         android:textColor="@color/white"
         android:textSize="20sp"
+        android:textStyle="bold"
+        android:elevation="5dp"
         app:layout_constraintBottom_toBottomOf="@id/view_topBar_list"
         app:layout_constraintEnd_toEndOf="@id/view_topBar_list"
         app:layout_constraintStart_toStartOf="@id/view_topBar_list"
@@ -36,7 +38,7 @@
         android:layout_marginTop="16dp"
         android:text="Filtros"
         android:textColor="@color/white"
-        app:backgroundTint="@color/blue"
+        android:elevation="4dp" app:backgroundTint="@color/blue"
         app:cornerRadius="24dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -47,11 +49,10 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="8dp"
-        android:paddingVertical="8dp"
-        android:clipToPadding="false"
+        android:layout_marginBottom="12dp" android:paddingTop="8dp"
+        android:paddingBottom="8dp" android:clipToPadding="false"
         app:layout_constraintTop_toBottomOf="@id/btnFiltros"
-        app:layout_constraintBottom_toTopOf="@id/view_bottomBar_list"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/btnListagemHistorico" app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         tools:listitem="@layout/item_servico" />
 
@@ -94,5 +95,43 @@
         app:layout_constraintEnd_toEndOf="@id/view_bottomBar_list"
         app:layout_constraintStart_toEndOf="@id/ic_home_list"
         app:layout_constraintTop_toTopOf="@id/view_bottomBar_list" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnListagemHistorico"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginBottom="32dp"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
+        android:padding="0dp"
+        app:backgroundTint="@color/blue"
+        app:cornerRadius="32dp"
+        app:icon="@drawable/ic_history"
+        app:iconGravity="textStart"
+        app:iconPadding="0dp"
+        app:iconSize="24dp"
+        app:iconTint="@color/white"
+        app:layout_constraintBottom_toTopOf="@id/view_bottomBar_list"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnListagemAdd"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="32dp"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
+        android:padding="0dp"
+        app:backgroundTint="@color/blue"
+        app:cornerRadius="32dp"
+        app:icon="@drawable/ic_add"
+        app:iconGravity="textStart"
+        app:iconPadding="0dp"
+        app:iconSize="24dp"
+        app:iconTint="@color/white"
+        app:layout_constraintBottom_toTopOf="@id/view_bottomBar_list"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

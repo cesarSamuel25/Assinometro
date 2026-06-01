@@ -7,7 +7,7 @@ class Constantes {
         const val KEY_NOME_USUARIO = "USER_NAME"
     }
 
-    object DatabaseConstants{
+    object DatabaseConstants {
         const val TABLE_NAME = "Financas"
         const val ID = "Id"
         const val DESC = "Desc"
@@ -15,5 +15,8 @@ class Constantes {
         const val CATEGORIA = "Categoria"
         const val VENCIMENTO = "Vencimento"
         const val ATIVO = "Ativo"
+
+        // Nova coluna para persistir a data do cancelamento
+        const val DATA_CANCELAMENTO = "DataCancelamento"
     }
 }

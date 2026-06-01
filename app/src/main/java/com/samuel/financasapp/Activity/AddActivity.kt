@@ -40,6 +40,18 @@ class AddActivity : AppCompatActivity() {
         configurarMascaraMoeda(binding.editValorServico)
         setupListeners()
         setupObservers()
+
+        // --- INTERCEPTAÇÃO DA INTENT PARA IDENTIFICAR PROCESSO DE ALTERAÇÃO ---
+        val idServico = intent.getIntExtra("SERVICO_ID", -1)
+        val ehEdicao = intent.getBooleanExtra("MODO_EDICAO", false)
+
+        viewModel.carregarModo(idServico, ehEdicao)
+
+        // Altera cirurgicamente os textos estáticos da interface se for uma alteração
+        if (ehEdicao) {
+            binding.textViewTitle.text = "Alterar Serviço"
+            binding.btnSalvarServico.text = "Atualizar Dados"
+        }
     }
 
     private fun setupListeners() {
@@ -69,7 +81,6 @@ class AddActivity : AppCompatActivity() {
                 finish()
             }
 
-
             icListAdd.setAnimateOnClickListener {
                 val intent = Intent(this@AddActivity, ListagemActivity::class.java)
                 startActivity(intent)
@@ -82,12 +93,25 @@ class AddActivity : AppCompatActivity() {
         viewModel.cadastroSucesso.observe(this) { sucesso ->
             if (sucesso) {
                 Toast.makeText(this, "Salvo com sucesso!", Toast.LENGTH_SHORT).show()
-                finish() // Fecha a tela e volta para a anterior
+                finish()
             }
         }
 
         viewModel.erroMensagem.observe(this) { mensagem ->
             Toast.makeText(this, mensagem, Toast.LENGTH_SHORT).show()
+        }
+
+        // Observa os dados recuperados do banco e popula as Views automaticamente
+        viewModel.servicoCarregado.observe(this) { servico ->
+            binding.apply {
+                editNomeServico.setText(servico.descricao)
+                editVencimento.setText(servico.vencimento.toString())
+                autoCompleteCategoria.setText(servico.categoria, false)
+
+                // Converte o double bruto vindo do SQLite e força o preenchimento formatado na máscara
+                val formatador = NumberFormat.getCurrencyInstance(Locale("pt", "BR"))
+                editValorServico.setText(formatador.format(servico.valor))
+            }
         }
     }
 
@@ -109,11 +133,6 @@ class AddActivity : AppCompatActivity() {
                 todosValidos = false
             } else { inputLayoutCategoria.error = null }
 
-            if (editVencimento.text.toString().isEmpty()) {
-                inputLayoutVencimento.error = "Digite o dia"
-                todosValidos = false
-            } else { inputLayoutVencimento.error = null }
-
             val vencimentoTexto = editVencimento.text.toString()
             val vencimentoNumero = vencimentoTexto.toIntOrNull()
 
@@ -121,7 +140,6 @@ class AddActivity : AppCompatActivity() {
                 inputLayoutVencimento.error = "Digite o dia"
                 todosValidos = false
             } else if (vencimentoNumero == null || vencimentoNumero < 1 || vencimentoNumero > 31) {
-                // Aqui bloqueamos o 0, números negativos ou maiores que 31
                 inputLayoutVencimento.error = "O dia deve ser entre 1 e 31"
                 todosValidos = false
             } else {
@@ -132,8 +150,8 @@ class AddActivity : AppCompatActivity() {
     }
 
     private fun configurarDropdownCategorias() {
-        val categorias = arrayOf("Streaming", "Saúde", "Aplicativos", "Outros")
-        val adapter = ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, categorias)
+        val categories = arrayOf("Streaming", "Saúde", "Aplicativos", "Outros")
+        val adapter = ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, categories)
         binding.autoCompleteCategoria.setAdapter(adapter)
     }
 
@@ -147,10 +165,10 @@ class AddActivity : AppCompatActivity() {
                     val limpo = s.toString().replace(Regex("[^\\d]"), "")
                     if (limpo.isNotEmpty()) {
                         val parsed = limpo.toDouble() / 100.0
-                        val formatado = NumberFormat.getCurrencyInstance(Locale("pt", "BR")).format(parsed)
-                        atual = formatado
-                        editText.setText(formatado)
-                        editText.setSelection(formatado.length)
+                        val formatador = NumberFormat.getCurrencyInstance(Locale("pt", "BR")).format(parsed)
+                        atual = formatador
+                        editText.setText(formatador)
+                        editText.setSelection(formatador.length)
                     } else {
                         atual = ""
                         editText.setText("")
