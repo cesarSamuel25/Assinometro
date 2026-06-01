@@ -36,7 +36,7 @@ Um aplicativo Android nativo para controle e gerenciamento de assinaturas e serv
 
 ## 📦 Como rodar o projeto
 
-1. Certifique-se de ter o **Android Studio** instalado (versão Iguana ou superior recomendada).
+1. Certifique-se de ter o **Android Studio** instalado (versão igual ou superior à recomendada).
 2. Clone este repositório no seu computador:
    ```bash
    git clone [https://github.com/cesarSamuel25/Assinometro.git](https://github.com/cesarSamuel25/Assinometro.git)
